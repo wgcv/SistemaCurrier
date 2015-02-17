@@ -16,6 +16,8 @@ public class SistemaCurrier extends javax.swing.JFrame {
      */
     public SistemaCurrier() {
         initComponents();
+        jPanel3.setVisible(false);
+        jPanel4.setVisible(false);
     }
 
     /**

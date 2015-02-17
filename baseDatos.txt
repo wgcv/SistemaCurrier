@@ -1,0 +1,107 @@
+CREATE TABLE cliente
+(
+	id number(10) PRIMARY KEY,
+	saldo number(9,2) not null,
+	credito number(9,2) not null,
+	descuento number(9,2) not null
+);
+CREATE sequence cliente_SEQ;
+CREATE trigger trg_cliente_id
+  before insert on cliente
+  for each row 
+begin  
+  if :NEW.id is null then
+    select cliente_SEQ.nextval into :NEW.id from dual;
+  end if;
+end;
+
+
+CREATE TABLE fabrica
+(
+	id number(10) PRIMARY KEY,
+	telefono varchar2(15) not null,
+	totalArticulos number(4) not null
+);
+CREATE sequence fabrica_SEQ;
+
+CREATE trigger trg_fabrica_id
+  before insert on fabrica
+  for each row 
+begin  
+  if :NEW.id is null then
+    select fabrica_seq.nextval into :NEW.id from dual;
+  end if;
+end;
+ 
+
+CREATE TABLE direccion
+( 
+	id number(10) PRIMARY KEY,
+	cliente number(10) REFERENCES cliente(id),
+	numero number(4) not null,
+	calle varchar2(50) not null,
+	comuna varchar2(50) not null,
+	ciudad varchar2(50) not null
+);
+CREATE sequence direccion_SEQ;
+
+
+CREATE trigger trg_direccion_id
+  before insert on direccion              
+  for each row 
+begin  
+  if :NEW.id is null then
+    select direccion_SEQ.nextval into :NEW.id from dual;
+  end if;
+end;
+ 
+CREATE TABLE articulo
+(
+	id number(10) PRIMARY KEY,
+	descripcion varchar2(50) not null
+);
+CREATE sequence articulo_SEQ;
+CREATE trigger trg_articulo_id
+  before insert on articulo
+  for each row 
+begin  
+  if :NEW.id is null then
+    select articulo_SEQ.nextval into :NEW.id from dual;
+  end if;
+end;
+
+
+CREATE TABLE pedido
+(
+	id number(10) PRIMARY KEY,
+	direccion number(10) REFERENCES direccion(id),
+	fecha TIMESTAMP
+);
+CREATE sequence pedido_SEQ;
+CREATE trigger trg_pedido_id
+  before insert on pedido
+  for each row 
+begin  
+  if :NEW.id is null then
+    select pedido_SEQ.nextval into :NEW.id from dual;
+  end if;
+end;
+
+CREATE TABLE orden
+(
+	
+	pedido NUMBER(10,0) REFERENCES pedido(id),
+	articulo NUMBER(10,0) REFERENCES articulo(id),
+	cantidad number(4) not null,
+	constraint pk_orden PRIMARY KEY(pedido, articulo)
+);
+
+
+
+CREATE TABLE stock
+(
+	articulo number(10) REFERENCES articulo (id),
+	fabrica number(10) REFERENCES fabrica (id),
+	stock number(4) not null,
+	constraint pk_stock PRIMARY KEY(articulo , fabrica)
+);
