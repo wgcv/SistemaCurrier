@@ -230,8 +230,7 @@ public class MaestroPedido extends javax.swing.JFrame {
             id = (BigDecimal) modelo.getValueAt(selectedRow, 0);
             BigDecimal direccion = (BigDecimal) modelo.getValueAt(selectedRow,1);
             TIMESTAMP fecha = (TIMESTAMP) modelo.getValueAt(selectedRow,2);
-           
-           jFormattedTextField1.setText( fecha.toString());
+           jFormattedTextField1.setText(fecha.toString().substring(0,fecha.toString().length()-5));
             jComboBox1.setSelectedItem(direccion.toString());
 
             //jTextField1.setText(numero.toString());
