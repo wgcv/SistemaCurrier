@@ -135,11 +135,21 @@ public class SistemaCurrier extends javax.swing.JFrame {
         jButton4.setMaximumSize(new java.awt.Dimension(75, 75));
         jButton4.setMinimumSize(new java.awt.Dimension(75, 75));
         jButton4.setPreferredSize(new java.awt.Dimension(75, 25));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Artículo");
         jButton5.setMaximumSize(new java.awt.Dimension(75, 75));
         jButton5.setMinimumSize(new java.awt.Dimension(75, 75));
         jButton5.setPreferredSize(new java.awt.Dimension(75, 25));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setLabel("Stock");
         jButton6.setMaximumSize(new java.awt.Dimension(75, 75));
@@ -321,6 +331,16 @@ public class SistemaCurrier extends javax.swing.JFrame {
            MaestroPedido v =new MaestroPedido();
         v.setVisible(true);  
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        MaestroArticulo v =new MaestroArticulo();
+        v.setVisible(true);  
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
