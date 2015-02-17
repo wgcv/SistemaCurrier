@@ -5,24 +5,32 @@
  */
 package SistemaCurrier;
 
+
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Gustavo
  */
-public class MaestroFabrica extends javax.swing.JFrame {
-boolean modificar = false;
-     BigDecimal id = null;
- private DefaultTableModel modelo;
+public class MaestroStock extends javax.swing.JFrame {
+
     /**
-     * Creates new form MaestroFabrica
+     * Creates new form MaestroStock
      */
-    public MaestroFabrica() {
+    
+     boolean modificar = false;
+     BigDecimal articuloM = null;
+       BigDecimal fabricaM = null;
+ private DefaultTableModel modelo;
+    public MaestroStock() {
         initComponents();
          jPanel3.setVisible(false);
+        articulo();
+        fabrica ();
         this.pack();
         this.tabla();
     }
@@ -44,11 +52,13 @@ boolean modificar = false;
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jTextField1 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,9 +114,7 @@ boolean modificar = false;
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setToolTipText("");
 
-        jLabel1.setText("Telefono");
-
-        jLabel2.setText("Total Articulos");
+        jLabel1.setText("Cantidad");
 
         jButton4.setText("Guardar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +130,14 @@ boolean modificar = false;
             }
         });
 
+        jLabel5.setText("Artículo");
+
+        jComboBox1.setToolTipText("");
+
+        jComboBox2.setToolTipText("");
+
+        jLabel6.setText("Fábrica");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -130,35 +146,45 @@ boolean modificar = false;
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1))))
-                .addGap(24, 24, 24))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton5))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(26, 26, 26)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -169,7 +195,7 @@ boolean modificar = false;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -192,8 +218,9 @@ boolean modificar = false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
         if(selectedRow != -1) {
-            BigDecimal id  = (BigDecimal) modelo.getValueAt(selectedRow, 0);
-            Sql.exec("DELETE FROM fabrica where id="+id);
+            BigDecimal articulo  = (BigDecimal) modelo.getValueAt(selectedRow, 0);
+            BigDecimal fabrica  = (BigDecimal) modelo.getValueAt(selectedRow, 1);
+            Sql.exec("DELETE FROM stock where articulo="+articulo+" AND fabrica ="+fabrica);
             modelo.removeRow(selectedRow);
 
         }        // TODO add your handling code here:
@@ -207,11 +234,16 @@ boolean modificar = false;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
         if(selectedRow != -1) {
-            id = (BigDecimal) modelo.getValueAt(selectedRow, 0);
-            String telefono  = (String) modelo.getValueAt(selectedRow,1);
-            BigDecimal totalArticulos   = (BigDecimal) modelo.getValueAt(selectedRow,2);
-            jTextField1.setText(telefono .toString());
-            jTextField2.setText(totalArticulos .toString());
+       
+            BigDecimal articulo = (BigDecimal) modelo.getValueAt(selectedRow,0);
+            jComboBox1.setSelectedItem(articulo.toString());
+            articuloM = articulo;
+            
+            BigDecimal fabrica = (BigDecimal) modelo.getValueAt(selectedRow,1);
+            fabricaM=fabrica;
+            jComboBox2.setSelectedItem(fabrica.toString());
+            BigDecimal stock = (BigDecimal) modelo.getValueAt(selectedRow,2);
+            jTextField1.setText(stock.toString());
             modificar = true;
             jPanel3.setVisible(true);
             this.pack();
@@ -220,11 +252,11 @@ boolean modificar = false;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(modificar){
-            Sql.exec("UPDATE fabrica SET telefono ='"+jTextField1.getText()+"',totalArticulos ="+Integer.parseInt(jTextField2.getText())+" where id = "+id);
+            Sql.exec("UPDATE stock SET articulo="+Integer.parseInt(jComboBox1.getSelectedItem().toString())+", fabrica="+ Integer.parseInt(jComboBox2.getSelectedItem().toString())+", stock="+Integer.parseInt(jTextField1.getText())+" where articulo = "+articuloM+"AND fabrica ="+fabricaM);
 
         }
         else{
-            Sql.exec("INSERT INTO fabrica (telefono ,totalArticulos )    VALUES ('"+jTextField1.getText()+"', "+Integer.parseInt(jTextField2.getText())+")");
+           Sql.exec("INSERT INTO stock (articulo  , fabrica , stock  )    VALUES ("+Integer.parseInt(jComboBox1.getSelectedItem().toString())+", "+Integer.parseInt(jComboBox2.getSelectedItem().toString())+", "+Integer.parseInt(jTextField1.getText())+")");
         }
         ocultarPanel();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -233,22 +265,58 @@ boolean modificar = false;
         // TODO add your handling code here:
         ocultarPanel();
     }//GEN-LAST:event_jButton5ActionPerformed
- private void ocultarPanel(){
-     id = null;
-       jTextField1.setText(null);
-       jTextField2.setText(null);
 
+    
+        private void ocultarPanel(){
+            fabricaM=null;
+            articuloM=null;
+      jTextField1.setText(null);
        jPanel3.setVisible(false);
         this.pack();
         this.tabla();
         modificar = false;
     }
+    private void articulo(){
+          try {
+            //Para establecer el modelo al JTable
+            modelo = new DefaultTableModel();
+            jTable1.setModel(modelo);
+            ResultSet rs=Sql.query("select id from articulo");
+            ResultSetMetaData rsMd = rs.getMetaData();
+               while(rs.next()){
+               
+               jComboBox1.addItem(rs.getString("id"));
+           }
+       } catch (Exception ex) {
+        ex.printStackTrace();
+       }
+          
+          
+    }
+      private void fabrica (){
+          try {
+            //Para establecer el modelo al JTable
+            modelo = new DefaultTableModel();
+            jTable1.setModel(modelo);
+            ResultSet rs=Sql.query("select id  from fabrica");
+            ResultSetMetaData rsMd = rs.getMetaData();
+               while(rs.next()){
+               
+               jComboBox2.addItem(rs.getString("id"));
+           }
+       } catch (Exception ex) {
+        ex.printStackTrace();
+       }
+          
+          
+    }
+
     private void tabla(){
         try {
             //Para establecer el modelo al JTable
             modelo = new DefaultTableModel();
             jTable1.setModel(modelo);
-            ResultSet rs=Sql.query("select * from fabrica");
+            ResultSet rs=Sql.query("select * from stock");
             ResultSetMetaData rsMd = rs.getMetaData();
             //La cantidad de columnas que tiene la consulta
             int cantidadColumnas = rsMd.getColumnCount();
@@ -285,24 +353,23 @@ boolean modificar = false;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MaestroFabrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MaestroStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MaestroFabrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MaestroStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MaestroFabrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MaestroStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MaestroFabrica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MaestroStock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MaestroFabrica().setVisible(true);
+                new MaestroStock().setVisible(true);
             }
         });
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -310,13 +377,15 @@ boolean modificar = false;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
