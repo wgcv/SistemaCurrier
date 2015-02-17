@@ -12,7 +12,7 @@ import javax.sql.rowset.CachedRowSet;
  * @author Gustavo
  */
 public class Sql {
-    static Connection cn;
+   static Connection cn;
  static Statement s;
  static ResultSet rs;
      public static CachedRowSet query(String sql){

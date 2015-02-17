@@ -5,17 +5,41 @@
  */
 package SistemaCurrier;
 
+
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Gustavo
  */
 public class RealizarPedido extends javax.swing.JFrame {
-
+   static Connection cn;
+ static Statement s;
+ static ResultSet rs;
     /**
      * Creates new form RealizarPedido
      */
     public RealizarPedido() {
         initComponents();
+        cliente();
+        jPanel2.setLayout( new BoxLayout(jPanel2, BoxLayout.Y_AXIS));
+     
+
     }
 
     /**
@@ -27,22 +51,250 @@ public class RealizarPedido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Cliente");
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Direccion");
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Agregar Producto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel2.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 343, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 174, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        if (jComboBox2.getItemCount()>0)
+       infoDireccion(jComboBox2.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        jComboBox2.removeAllItems();
+        direccion(jComboBox1.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jPanel2.add(producto());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            //Para establecer el modelo al JTable
+         String url = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
+            // Establecemos los valores de cadena de conexión, usuario y contraseña
+            cn = DriverManager.getConnection(url, "BASEDATOS", "123456");
+            //Para ejecutar la consulta
+            s =  cn.createStatement();
+            //Ejecutamos la consulta y los datos lo almacenamos en un ResultSet
+             s.execute("INSERT INTO pedido (direccion ,fecha) VALUES ("+Integer.parseInt(jComboBox2.getSelectedItem().toString())+", '25-MAY-15 05.05.00.000000 AM')",Statement.RETURN_GENERATED_KEYS);
+       
+            rs= s.getGeneratedKeys();
+             while(rs.next()){
+               
+             BigDecimal clave=rs.getBigDecimal(0);
+           }
+         
+
+            
+            
+       } catch (Exception ex) {
+        ex.printStackTrace();
+       }
+       
+        
+     /*   
+        Component[] components = jPanel2.getComponents();
+
+    for (int i = 0; i < components.length; i++) {
+        JPanel ct = (JPanel) components[i];
+        Component[] comt = ct.getComponents();
+        for (int j = 0; j < components.length; j++) {
+            if(components[i].getClass().getName().toString().equals("javax.swing.JTextField")){
+            components[i].setEnabled(false);
+        }
+        }
+    }*/
+    }//GEN-LAST:event_jButton2ActionPerformed
+    private JPanel producto(){
+        JPanel jp=new JPanel(new FlowLayout());
+        JComboBox jc = new JComboBox();
+          try {
+            //Para establecer el modelo al JTable
+           
+            ResultSet rs=Sql.query("select id from articulo");
+            ResultSetMetaData rsMd = rs.getMetaData();
+               while(rs.next()){
+               
+               jc.addItem(rs.getString("id"));
+           }
+       } catch (Exception ex) {
+        ex.printStackTrace();
+       }
+       jp.add( jc);
+       JTextField jt = new JTextField(3);
+       jp.add(jt);
+       return jp;
+        
+    }
+    
+    private void cliente(){
+          try {
+            //Para establecer el modelo al JTable
+           
+            ResultSet rs=Sql.query("select id from cliente");
+            ResultSetMetaData rsMd = rs.getMetaData();
+               while(rs.next()){
+               
+               jComboBox1.addItem(rs.getString("id"));
+           }
+       } catch (Exception ex) {
+        ex.printStackTrace();
+       }
+    }
+    private void infoDireccion(String direccion){
+          try {
+            //Para establecer el modelo al JTable
+           
+            ResultSet rs=Sql.query("select * from direccion where id ="+direccion);
+            ResultSetMetaData rsMd = rs.getMetaData();
+            rs.next();
+            //   while(rs.next()){
+               jLabel3.setText(rs.getString("comuna")+ " "+ rs.getString("calle")+ " "+rs.getString("numero")+ " - "+rs.getString("ciudad"));
+           
+       } catch (Exception ex) {
+        ex.printStackTrace();
+       }
+    }
+    private void direccion(String cliente){
+          try {
+            //Para establecer el modelo al JTable
+           
+            ResultSet rs=Sql.query("select id from direccion where cliente ="+cliente);
+            ResultSetMetaData rsMd = rs.getMetaData();
+               while(rs.next()){
+               
+               jComboBox2.addItem(rs.getString("id"));
+           }
+       } catch (Exception ex) {
+        ex.printStackTrace();
+       }
+    }
     /**
      * @param args the command line arguments
      */
@@ -79,5 +331,15 @@ public class RealizarPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

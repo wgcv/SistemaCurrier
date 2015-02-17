@@ -218,6 +218,11 @@ public class SistemaCurrier extends javax.swing.JFrame {
 
         jButton15.setText("Realizar Pedido");
         jButton15.setPreferredSize(new java.awt.Dimension(120, 25));
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -356,6 +361,12 @@ public class SistemaCurrier extends javax.swing.JFrame {
         MaestroFabrica v =new MaestroFabrica();
         v.setVisible(true);  
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+           RealizarPedido v =new RealizarPedido();
+        v.setVisible(true); 
+    }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
      * @param args the command line arguments
