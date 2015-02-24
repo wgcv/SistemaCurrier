@@ -61,6 +61,7 @@ public class MaestroStock extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Stock");
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -316,7 +317,7 @@ public class MaestroStock extends javax.swing.JFrame {
             //Para establecer el modelo al JTable
             modelo = new DefaultTableModel();
             jTable1.setModel(modelo);
-            ResultSet rs=Sql.query("select * from stock");
+            ResultSet rs=Sql.query("select stock.*,articulo.descripcion, fabrica.nombre from stock,articulo,fabrica where stock.articulo=articulo.id and stock.fabrica=fabrica.id");
             ResultSetMetaData rsMd = rs.getMetaData();
             //La cantidad de columnas que tiene la consulta
             int cantidadColumnas = rsMd.getColumnCount();

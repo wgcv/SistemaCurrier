@@ -77,6 +77,7 @@ public class MaestroDireccion extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Direcciones");
 
         jScrollPane1.setViewportView(jTable1);
 

@@ -59,6 +59,7 @@ boolean modificar = false;
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Clientes");
 
         jScrollPane1.setViewportView(jTable1);
 

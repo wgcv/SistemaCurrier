@@ -60,6 +60,7 @@ public class MaestroOrden extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Órdenes");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setToolTipText("");
@@ -312,7 +313,8 @@ public class MaestroOrden extends javax.swing.JFrame {
             //Para establecer el modelo al JTable
             modelo = new DefaultTableModel();
             jTable1.setModel(modelo);
-            ResultSet rs=Sql.query("select * from orden");
+            ResultSet rs=Sql.query("select orden.*, cliente.nombre,articulo.descripcion from orden,cliente,direccion,pedido,articulo\n" +
+"where orden.pedido=pedido.id and pedido.direccion=direccion.id and direccion.cliente=cliente.id and orden.articulo=articulo.id");
             ResultSetMetaData rsMd = rs.getMetaData();
             //La cantidad de columnas que tiene la consulta
             int cantidadColumnas = rsMd.getColumnCount();

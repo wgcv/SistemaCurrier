@@ -62,6 +62,7 @@ public class MaestroPedido extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pedidos");
 
         jScrollPane1.setViewportView(jTable1);
 

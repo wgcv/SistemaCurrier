@@ -49,8 +49,11 @@ boolean modificar = false;
         jTextField2 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Fábricas");
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -122,6 +125,8 @@ boolean modificar = false;
             }
         });
 
+        jLabel3.setText("Nombre");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -129,20 +134,21 @@ boolean modificar = false;
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1))))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField3))
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +161,11 @@ boolean modificar = false;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
@@ -210,8 +220,10 @@ boolean modificar = false;
             id = (BigDecimal) modelo.getValueAt(selectedRow, 0);
             String telefono  = (String) modelo.getValueAt(selectedRow,1);
             BigDecimal totalArticulos   = (BigDecimal) modelo.getValueAt(selectedRow,2);
+              String nombre   = (String) modelo.getValueAt(selectedRow,3);
             jTextField1.setText(telefono .toString());
             jTextField2.setText(totalArticulos .toString());
+               jTextField3.setText(nombre);
             modificar = true;
             jPanel3.setVisible(true);
             this.pack();
@@ -220,11 +232,11 @@ boolean modificar = false;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if(modificar){
-            Sql.exec("UPDATE fabrica SET telefono ='"+jTextField1.getText()+"',totalArticulos ="+Integer.parseInt(jTextField2.getText())+" where id = "+id);
+            Sql.exec("UPDATE fabrica SET telefono ='"+jTextField1.getText()+"',totalArticulos ="+Integer.parseInt(jTextField2.getText())+",nombre ='"+ jTextField3.getText()+"' where id = "+id);
 
         }
         else{
-            Sql.exec("INSERT INTO fabrica (telefono ,totalArticulos )    VALUES ('"+jTextField1.getText()+"', "+Integer.parseInt(jTextField2.getText())+")");
+            Sql.exec("INSERT INTO fabrica (telefono ,totalArticulos, nombre )    VALUES ('"+jTextField1.getText()+"', "+Integer.parseInt(jTextField2.getText())+",'"+jTextField3.getText()+"')");
         }
         ocultarPanel();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -237,7 +249,7 @@ boolean modificar = false;
      id = null;
        jTextField1.setText(null);
        jTextField2.setText(null);
-
+  jTextField3.setText(null);
        jPanel3.setVisible(false);
         this.pack();
         this.tabla();
@@ -312,11 +324,13 @@ boolean modificar = false;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
