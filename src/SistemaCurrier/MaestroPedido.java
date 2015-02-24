@@ -229,7 +229,7 @@ public class MaestroPedido extends javax.swing.JFrame {
         if(selectedRow != -1) {
             id = (BigDecimal) modelo.getValueAt(selectedRow, 0);
             BigDecimal direccion = (BigDecimal) modelo.getValueAt(selectedRow,1);
-            TIMESTAMP fecha = (TIMESTAMP) modelo.getValueAt(selectedRow,2);
+            TIMESTAMP fecha = (TIMESTAMP) modelo.getValueAt(selectedRow,4);
            jFormattedTextField1.setText(fecha.toString().substring(0,fecha.toString().length()-5));
             jComboBox1.setSelectedItem(direccion.toString());
 
@@ -284,7 +284,7 @@ public class MaestroPedido extends javax.swing.JFrame {
             //Para establecer el modelo al JTable
             modelo = new DefaultTableModel();
             jTable1.setModel(modelo);
-            ResultSet rs=Sql.query("select * from pedido");
+            ResultSet rs=Sql.query("select pedido.id, pedido.direccion, direccion.calle || ' ' || ' ' || direccion.comuna || ' ' || direccion.numero || ' ' || direccion.ciudad AS DIRECCIONDETALLE , cliente.nombre , pedido.fecha from pedido, direccion,cliente where pedido.direccion=direccion.id AND direccion.cliente = cliente.id");
             ResultSetMetaData rsMd = rs.getMetaData();
             //La cantidad de columnas que tiene la consulta
             int cantidadColumnas = rsMd.getColumnCount();
