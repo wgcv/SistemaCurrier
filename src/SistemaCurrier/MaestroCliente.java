@@ -8,6 +8,7 @@ package SistemaCurrier;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -274,6 +275,7 @@ boolean modificar = false;
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(Integer.parseInt(jTextField2.getText())< 3000000 ){
         if(modificar){
             Sql.exec("UPDATE cliente SET saldo ="+Integer.parseInt(jTextField1.getText())+",credito ='"+Integer.parseInt(jTextField2.getText())+"', descuento ='"+Integer.parseInt(jTextField3.getText())+"', nombre='"+ jTextField4.getText()+"', telefono ='"+jTextField5.getText()+"' where id = "+id);
 
@@ -282,13 +284,20 @@ boolean modificar = false;
             Sql.exec("INSERT INTO cliente (saldo ,credito,descuento,nombre,telefono )    VALUES ("+Integer.parseInt(jTextField1.getText())+", '"+Integer.parseInt(jTextField2.getText())+"', '"+Integer.parseInt(jTextField3.getText())+"', '"+jTextField4.getText()+"', '"+jTextField5.getText() +"')");
         }
         ocultarPanel();
+        }
+        else{
+        JOptionPane.showMessageDialog(this, "No puede ingresar crédito tan alto");
+
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
  private void ocultarPanel(){
      id = null;
        jTextField1.setText(null);
        jTextField2.setText(null);
        jTextField3.setText(null);
-
+ jTextField4.setText(null);
+       jTextField5.setText(null);
        jPanel3.setVisible(false);
         this.pack();
         this.tabla();

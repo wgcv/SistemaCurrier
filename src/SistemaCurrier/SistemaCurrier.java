@@ -54,11 +54,11 @@ public class SistemaCurrier extends javax.swing.JFrame {
 
         jLabel3.setText("W. Gustavo Cevallos  Vaca");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Jose Blancas");
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Michelle Rivadeneira");
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setText("Paul Viera");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

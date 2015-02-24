@@ -105,3 +105,21 @@ CREATE TABLE stock
 	stock number(4) not null,
 	constraint pk_stock PRIMARY KEY(articulo , fabrica)
 );
+
+alter table
+   cliente
+add
+   (
+nombre varchar2(50),
+telefono varchar2(15)
+
+);
+
+alter table
+   fabrica
+add
+   (
+nombre varchar2(50),
+telefono varchar2(15)
+
+);
