@@ -278,10 +278,10 @@ int selectedRow = jTable1.getSelectedRow();
 if(selectedRow != -1) {
      id = (BigDecimal) modelo.getValueAt(selectedRow, 0);
       BigDecimal cliente = (BigDecimal) modelo.getValueAt(selectedRow,1);
-    BigDecimal numero = (BigDecimal) modelo.getValueAt(selectedRow,2);
-    String calle = (String) modelo.getValueAt(selectedRow,3);
-    String comuna = (String) modelo.getValueAt(selectedRow,4);
-    String ciudad = (String) modelo.getValueAt(selectedRow,5);
+    BigDecimal numero = (BigDecimal) modelo.getValueAt(selectedRow,3);
+    String calle = (String) modelo.getValueAt(selectedRow,4);
+    String comuna = (String) modelo.getValueAt(selectedRow,5);
+    String ciudad = (String) modelo.getValueAt(selectedRow,6);
     jComboBox1.setSelectedItem(cliente.toString());
     jTextField1.setText(numero.toString());
        jTextField2.setText(calle);
@@ -328,7 +328,7 @@ jTextField4.setText(ciudad);
             //Para establecer el modelo al JTable
             modelo = new DefaultTableModel();
             jTable1.setModel(modelo);
-            ResultSet rs=Sql.query("select * from DIRECCION");
+            ResultSet rs=Sql.query("select DIRECCION.id, DIRECCION.cliente, CLIENTE.nombre, DIRECCION.numero, DIRECCION.calle, DIRECCION.comuna, DIRECCION.ciudad from DIRECCION,cliente where DIRECCION.cliente = CLIENTE.id");
             ResultSetMetaData rsMd = rs.getMetaData();
             //La cantidad de columnas que tiene la consulta
             int cantidadColumnas = rsMd.getColumnCount();
